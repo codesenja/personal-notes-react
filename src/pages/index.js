@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-
-export default class index extends Component {
+import HeaderSection from "../components/HeaderSection";
+import NotesApp from "../components/NotesSection/NotesList";
+export default class LandingPage extends Component {
   componentDidMount() {
     document.title = "My Personal Notes.";
     window.scrollTo(0, 0);
   }
   render() {
-    return <div>index</div>;
+    return (
+      <>
+        <HeaderSection />
+        <NotesApp />
+      </>
+    );
   }
 }

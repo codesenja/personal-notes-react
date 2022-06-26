@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import ArchiveSection from "../components/ArchiveSection";
 import HeaderSection from "../components/HeaderSection";
-import NotesApp from "../components/NotesSection/NotesList";
+import NotesInput from "../components/NotesInput/NotesInput";
+import NotesApp from "../components/NotesSection/NotesApp";
 export default class LandingPage extends Component {
   componentDidMount() {
     document.title = "My Personal Notes.";
@@ -9,8 +11,13 @@ export default class LandingPage extends Component {
   render() {
     return (
       <>
+        {/* <HeaderSection /> */}
         <HeaderSection />
-        <NotesApp />
+        <div className="note-app__body">
+          <NotesInput />
+          <NotesApp />
+          <ArchiveSection />
+        </div>
       </>
     );
   }

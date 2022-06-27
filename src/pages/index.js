@@ -14,7 +14,7 @@ export default class LandingPage extends Component {
         {/* <HeaderSection /> */}
         <HeaderSection />
         <div className="note-app__body">
-          <NotesInput />
+          <NotesInput addNotes={this.onAddNotesHandler} />
           <NotesApp />
           <ArchiveSection />
         </div>

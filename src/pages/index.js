@@ -15,7 +15,7 @@ export default function LandingPage() {
 
   const addNotesHandler = (data) => {
     const newData = {
-      id: notes.length + 1,
+      id: +new Date(),
       title: data.title,
       body: data.body,
       createdAt: new Date().toString("yyyy-MM-dd"),

@@ -20,14 +20,18 @@ export default function ArchiveSection({ data, updateData }) {
     <>
       <h2>Arsip</h2>
       <div className="notes-list">
-        {result.map((note) => (
-          <NotesBody
-            key={note.id}
-            {...note}
-            deleteNotes={onDeleteHandler}
-            archiveNotes={onArchiveHandler}
-          />
-        ))}
+        {result.length === 0 || undefined ? (
+          <h3>Tidak ada catatan</h3>
+        ) : (
+          result.map((note) => (
+            <NotesBody
+              key={note.id}
+              {...note}
+              deleteNotes={onDeleteHandler}
+              archiveNotes={onArchiveHandler}
+            />
+          ))
+        )}
       </div>
     </>
   );

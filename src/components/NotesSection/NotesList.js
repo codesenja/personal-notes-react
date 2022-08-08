@@ -16,14 +16,18 @@ export default function NotesList({ notes, updateData }) {
 
   return (
     <div className="notes-list">
-      {notes.map((note) => (
-        <NotesBody
-          key={note.id}
-          {...note}
-          deleteNotes={onDeleteHandler}
-          archiveNotes={onArchiveHandler}
-        />
-      ))}
+      {notes.length === 0 || undefined ? (
+        <h3>Tidak ada catatan</h3>
+      ) : (
+        notes.map((note) => (
+          <NotesBody
+            key={note.id}
+            {...note}
+            deleteNotes={onDeleteHandler}
+            archiveNotes={onArchiveHandler}
+          />
+        ))
+      )}
     </div>
   );
 }

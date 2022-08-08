@@ -6,6 +6,19 @@ export default function NotesInput(props) {
     body: "",
   });
 
+  const [limitValue, setLimitValue] = useState(100);
+
+  const bodyValueHandle = (e) => {
+    const limit = 100;
+
+    setLimitValue(limit - e.length);
+
+    setListItem({
+      ...listItem,
+      body: e.slice(0, limit),
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     props.addNotes(listItem);
@@ -15,7 +28,9 @@ export default function NotesInput(props) {
     <div className="note-input">
       <h2>Buat Catatan</h2>
       <form onSubmit={handleSubmit}>
-        <p className="note-input__title__char-limit"></p>
+        <p className="note-input__title__char-limit">
+          Sisa Karakter :{limitValue}
+        </p>
         <input
           type="text"
           className="note-input__title"
@@ -37,13 +52,11 @@ export default function NotesInput(props) {
           className="note-input__body"
           placeholder="tulis catatanmu disini..."
           onChange={(e) => {
-            setListItem({
-              ...listItem,
-              body: e.target.value,
-            });
+            bodyValueHandle(e.target.value);
           }}
           value={listItem.body}
         ></textarea>
+
         <button type="submit">Buat</button>
       </form>
     </div>

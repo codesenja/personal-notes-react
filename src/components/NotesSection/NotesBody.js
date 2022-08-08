@@ -22,7 +22,7 @@ export default function NotesBody(props) {
             className="note-item__archive-button"
             onClick={() => props.archiveNotes(props.id)}
           >
-            {props.archived === false ? "Arsipkan" : "Kembalikan"}
+            {props.archived === false ? "Arsipkan" : "Pindahkan"}
           </button>
         </div>
       </div>

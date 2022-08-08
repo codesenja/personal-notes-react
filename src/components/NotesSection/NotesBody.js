@@ -12,8 +12,18 @@ export default function NotesBody(props) {
           <p className="note-item__body">{props.body}</p>
         </div>
         <div className="note-item__action">
-          <button className="note-item__delete-button">Delete</button>
-          <button className="note-item__archive-button">Arsipkan</button>
+          <button
+            className="note-item__delete-button"
+            onClick={() => props.deleteNotes(props.id)}
+          >
+            Delete
+          </button>
+          <button
+            className="note-item__archive-button"
+            onClick={() => props.archiveNotes(props.id)}
+          >
+            {props.archived === false ? "Arsipkan" : "Kembalikan"}
+          </button>
         </div>
       </div>
     </>

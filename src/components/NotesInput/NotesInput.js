@@ -2,11 +2,8 @@ import React, { useState } from "react";
 
 export default function NotesInput(props) {
   const [listItem, setListItem] = useState({
-    id: +0,
     title: "",
     body: "",
-    createdAt: new Date(),
-    archived: false,
   });
 
   const handleSubmit = (e) => {

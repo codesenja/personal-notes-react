@@ -1,18 +1,12 @@
-import React, { useState } from "react";
-import { getInitialData, showFormattedDate } from "../../utils";
+import React from "react";
+
 import NotesList from "./NotesList";
 
-export default function NotesApp() {
-  const [notes, setNotes] = useState(getInitialData());
-  const onDeleteHandler = (id) => {
-    const item = notes.filter((note) => note.id !== id);
-    setNotes(item);
-  };
-
+export default function NotesApp(props) {
   return (
     <>
       <h2>Catatan Aktif</h2>
-      <NotesList notes={notes} onDelete={onDeleteHandler} />
+      <NotesList notes={props.data} updateData={props.updateData} />
     </>
   );
 }

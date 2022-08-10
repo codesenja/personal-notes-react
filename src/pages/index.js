@@ -4,7 +4,7 @@ import HeaderSection from "../components/HeaderSection";
 import NotesInput from "../components/NotesInput/NotesInput";
 import NotesApp from "../components/NotesSection/NotesApp";
 
-import { getInitialData } from "../utils";
+import { getInitialData, showFormattedDate } from "../utils";
 export default function LandingPage() {
   const [notes, setNotes] = useState(getInitialData());
   const [filterNotes, setFilterNotes] = useState("");
@@ -18,7 +18,7 @@ export default function LandingPage() {
       id: +new Date(),
       title: data.title,
       body: data.body,
-      createdAt: new Date().toString("yyyy-MM-dd"),
+      createdAt: showFormattedDate(new Date()),
       archived: false,
     };
 

@@ -2,6 +2,7 @@ import React from "react";
 import NotesBody from "./NotesBody";
 
 export default function NotesList({ notes, updateData }) {
+  const result = notes.filter((row) => row.archived === false);
   const onDeleteHandler = (id) => {
     const item = notes.filter((note) => note.id !== id);
     updateData(item);
@@ -16,10 +17,10 @@ export default function NotesList({ notes, updateData }) {
 
   return (
     <div className="notes-list">
-      {notes.length === 0 || undefined ? (
+      {result.length === 0 || undefined ? (
         <h3>Tidak ada catatan</h3>
       ) : (
-        notes.map((note) => (
+        result.map((note) => (
           <NotesBody
             key={note.id}
             {...note}

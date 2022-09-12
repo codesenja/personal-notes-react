@@ -11,7 +11,7 @@ import "./styles/style.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <div class="app-container">
+  <div className="app-container">
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />

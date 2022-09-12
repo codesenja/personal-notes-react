@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AiOutlineCheck } from "react-icons/ai";
 
 export default function NotesInput(props) {
   const [listItem, setListItem] = useState({
@@ -19,21 +20,16 @@ export default function NotesInput(props) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     props.addNotes(listItem);
   };
 
   return (
-    <div className="note-input">
-      <h2>Buat Catatan</h2>
-      <form onSubmit={handleSubmit}>
-        <p className="note-input__title__char-limit">
-          Sisa Karakter :{limitValue}
-        </p>
+    <section className="add-new-page">
+      <div className="add-new-page__input">
         <input
           type="text"
-          className="note-input__title"
+          className="add-new-page__input__title"
           placeholder="ini adalah judul ..."
           onChange={(e) => {
             setListItem({
@@ -47,18 +43,27 @@ export default function NotesInput(props) {
         <textarea
           name="body"
           id="body"
-          cols="30"
-          rows="10"
-          className="note-input__body"
+          className="add-new-page__input__body"
           placeholder="tulis catatanmu disini..."
           onChange={(e) => {
             bodyValueHandle(e.target.value);
           }}
           value={listItem.body}
-        ></textarea>
-
-        <button type="submit">Buat</button>
-      </form>
-    </div>
+        />
+        <p className="note-input__title__char-limit">
+          Sisa Karakter :{limitValue}
+        </p>
+        <div className="homepage__action">
+          <button
+            className="action"
+            type="button"
+            title="tambah"
+            onClick={handleSubmit}
+          >
+            <AiOutlineCheck />
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

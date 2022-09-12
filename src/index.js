@@ -11,13 +11,15 @@ import "./styles/style.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/add" element={<AddPage />} />
-      <Route path="/detail/:id" element={<DetailPage />} />
-      <Route path="/*" element={<Fouronfour />} />
-      {/* <Route /> */}
-    </Routes>
-  </BrowserRouter>
+  <div class="app-container">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/add" element={<AddPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/*" element={<Fouronfour />} />
+        {/* <Route /> */}
+      </Routes>
+    </BrowserRouter>
+  </div>
 );

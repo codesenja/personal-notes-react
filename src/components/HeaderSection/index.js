@@ -1,17 +1,18 @@
 import React from "react";
 
-export default function HeaderSection({ pencarianData }) {
+export default function HeaderSection() {
   return (
-    <div className="note-app__header">
-      <h1>Notes</h1>
-      <div className="note-search">
-        <input
-          type="text"
-          placeholder="cari catatan..."
-          aria-label="Search"
-          onChange={pencarianData}
-        />
-      </div>
-    </div>
+    <header>
+      <h1>
+        <a href="/">Notes</a>
+      </h1>
+      <nav className="navigation">
+        <ul>
+          <li>
+            <a href="/archives">Arsip</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }

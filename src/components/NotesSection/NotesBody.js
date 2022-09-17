@@ -8,7 +8,7 @@ export default function NotesBody(props) {
       <div className="note-item">
         <div className="note-item__content">
           <h2 className="note-item__title">
-            <Link to={`detail/notes-${props.id}`}>{props.title}</Link>
+            <Link to={`detail/${props.id}`}>{props.title}</Link>
           </h2>
 
           <p className="note-item__date">

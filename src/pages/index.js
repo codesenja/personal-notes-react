@@ -1,36 +1,40 @@
 import React, { useState } from "react";
 import HeaderSection from "../components/HeaderSection";
 import NotesApp from "../components/NotesSection/NotesApp";
+import SearchBar from "../components/NoteSearch/SearchBar";
 import { AiOutlinePlus } from "react-icons/ai";
-import { getInitialData } from "../utils";
-import { useNavigate, useLocation } from "react-router-dom";
-export default function LandingPage() {
-  const [notes, setNotes] = useState(getInitialData());
+import { getAllNotes } from "../utils/local-data";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-  const [filterNotes, setFilterNotes] = useState("");
+export default function LandingPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const keyword = searchParams.get("keyword");
+
+  const changeSearchParams = (keyword) => {
+    setFilterNotes(keyword);
+    setSearchParams({ keyword });
+  };
+
+  const notes = getAllNotes();
+  // const [notes, setNotes] = useState(getAllNotes());
+  const [filterNotes, setFilterNotes] = useState(keyword || "");
 
   const navigate = useNavigate();
+
   const resultNotes = notes.filter((e) =>
     (e.title || "").toLowerCase().includes(filterNotes.toLowerCase())
   );
-
-  // const { state: { infoId } = {} } = useLocation();
 
   return (
     <>
       <HeaderSection />
       <main>
-        <section className="search-bar">
-          <h2>Catatan Aktif</h2>
-          <input
-            type="text"
-            placeholder="cari catatan..."
-            aria-label="Search"
-            onChange={(e) => setFilterNotes(e.target.value)}
-          />
-        </section>
-
-        <NotesApp data={resultNotes} updateData={setNotes} />
+        <SearchBar
+          title="Aktif"
+          keyword={filterNotes}
+          keywordChange={changeSearchParams}
+        />
+        <NotesApp data={resultNotes} />
 
         <div className="homepage__action">
           <button

@@ -5,7 +5,7 @@ import NotesList from "./NotesList";
 export default function NotesApp(props) {
   return (
     <>
-      <NotesList notes={props.data} updateData={props.updateData} />
+      <NotesList notes={props.data} />
     </>
   );
 }

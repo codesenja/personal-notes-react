@@ -10,7 +10,7 @@ export default function HeaderSection() {
       <nav className="navigation">
         <ul>
           <li>
-            <Link to="/archives">Arsip</Link>
+            <Link to="/archived">Arsip</Link>
           </li>
         </ul>
       </nav>

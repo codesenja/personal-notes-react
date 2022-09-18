@@ -7,6 +7,7 @@ import {
   deleteNote,
   editNote,
   archiveNote,
+  unarchiveNote,
 } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +18,11 @@ export default function DetailPage() {
 
   const archiveNoteHandler = (data) => {
     archiveNote(data);
+    navigate("/");
+  };
+
+  const unarchiveNoteHandler = (data) => {
+    unarchiveNote(data);
     navigate("/");
   };
 
@@ -39,6 +45,7 @@ export default function DetailPage() {
           onDelete={deleteNoteHandler}
           onUpdate={updateNoteHandler}
           onArchived={archiveNoteHandler}
+          onUnArchived={unarchiveNoteHandler}
         />
       </main>
     </>

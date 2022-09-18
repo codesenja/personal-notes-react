@@ -10,7 +10,7 @@ export default function NotesList({ notes }) {
       {result.length === 0 || undefined ? (
         <h3>Tidak ada catatan</h3>
       ) : (
-        result.map((note) => <NotesBody key={note.id} {...note} />)
+        result.map((note) => <NotesBody key={note.id} id={note.id} {...note} />)
       )}
     </div>
   );

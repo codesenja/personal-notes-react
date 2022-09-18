@@ -24,7 +24,9 @@ export default function ArchiveSection({ archived }) {
         {archived.length === 0 || undefined ? (
           <h3>Tidak ada catatan</h3>
         ) : (
-          archived.map((note) => <NotesBody key={note.id} {...note} />)
+          archived.map((note) => (
+            <NotesBody key={note.id} id={note.id} {...note} />
+          ))
         )}
       </div>
     </>

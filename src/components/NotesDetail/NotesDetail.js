@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { BsArchive } from "react-icons/bs";
+import { BiArchiveIn, BiArchiveOut } from "react-icons/bi";
 import PropTypes from "prop-types";
 
-export default function NotesDetail({ notes, onDelete, onUpdate, onArchived }) {
+export default function NotesDetail({
+  notes,
+  onDelete,
+  onUpdate,
+  onArchived,
+  onUnArchived,
+}) {
   const [listItem, setListItem] = useState({
     id: notes.id,
     title: notes.title,
@@ -12,6 +18,10 @@ export default function NotesDetail({ notes, onDelete, onUpdate, onArchived }) {
 
   const handleArchived = () => {
     onArchived(notes.id);
+  };
+
+  const handleUnArchived = () => {
+    onUnArchived(notes.id);
   };
 
   const handleEdit = () => {
@@ -53,14 +63,30 @@ export default function NotesDetail({ notes, onDelete, onUpdate, onArchived }) {
         />
         <p className="note-input__title__char-limit"></p>
         <div className="detail-page__action">
-          <button
-            className="action"
-            type="button"
-            title="archived"
-            onClick={handleArchived}
-          >
-            <BsArchive />
-          </button>
+          {notes.archived === true ? (
+            <>
+              <button
+                className="action"
+                type="button"
+                title="archived"
+                onClick={handleUnArchived}
+              >
+                <BiArchiveOut />
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="action"
+                type="button"
+                title="archived"
+                onClick={handleArchived}
+              >
+                <BiArchiveIn />
+              </button>
+            </>
+          )}
+
           <button
             className="action"
             type="button"
@@ -88,4 +114,5 @@ NotesDetail.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onArchived: PropTypes.func.isRequired,
+  onUnArchived: PropTypes.func.isRequired,
 };

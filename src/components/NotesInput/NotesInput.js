@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
+import PropTypes from "prop-types";
 
-export default function NotesInput(props) {
+export default function NotesInput({ addNotes }) {
   const [listItem, setListItem] = useState({
     title: "",
     body: "",
@@ -21,7 +22,7 @@ export default function NotesInput(props) {
   };
 
   const handleSubmit = () => {
-    props.addNotes(listItem);
+    addNotes(listItem);
   };
 
   return (
@@ -67,3 +68,7 @@ export default function NotesInput(props) {
     </section>
   );
 }
+
+NotesInput.propTypes = {
+  addNotes: PropTypes.func.isRequired,
+};

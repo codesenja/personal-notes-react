@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { BsArchive } from "react-icons/bs";
-export default function NotesDetail(props) {
-  const { notes, onDelete, onUpdate, onArchived } = props;
+import PropTypes from "prop-types";
 
+export default function NotesDetail({ notes, onDelete, onUpdate, onArchived }) {
   const [listItem, setListItem] = useState({
     id: notes.id,
     title: notes.title,
@@ -82,3 +82,10 @@ export default function NotesDetail(props) {
     </section>
   );
 }
+
+NotesDetail.propTypes = {
+  notes: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  onArchived: PropTypes.func.isRequired,
+};

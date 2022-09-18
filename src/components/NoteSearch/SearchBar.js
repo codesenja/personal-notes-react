@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function SearchBar({ title, keyword, keywordChange }) {
   return (
@@ -14,3 +15,9 @@ export default function SearchBar({ title, keyword, keywordChange }) {
     </section>
   );
 }
+
+SearchBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
+  keywordChange: PropTypes.func.isRequired,
+};

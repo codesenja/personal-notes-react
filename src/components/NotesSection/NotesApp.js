@@ -1,11 +1,15 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import NotesList from "./NotesList";
 
-export default function NotesApp(props) {
+export default function NotesApp({ data }) {
   return (
     <>
-      <NotesList notes={props.data} />
+      <NotesList notes={data} />
     </>
   );
 }
+
+NotesApp.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

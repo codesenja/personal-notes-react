@@ -1,5 +1,6 @@
 import React from "react";
 import NotesBody from "../NotesSection/NotesBody";
+import PropTypes from "prop-types";
 
 export default function ArchiveSection({ archived }) {
   // const result = data.filter((row) => row.archived === true);
@@ -29,3 +30,7 @@ export default function ArchiveSection({ archived }) {
     </>
   );
 }
+
+ArchiveSection.propTypes = {
+  archived: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -1,15 +1,9 @@
 import React from "react";
 import NotesBody from "./NotesBody";
+import PropTypes from "prop-types";
 
 export default function NotesList({ notes }) {
   const result = notes.filter((row) => row.archived === false);
-
-  // const onArchiveHandler = (id) => {
-  //   const index = notes.map((object) => object.id).indexOf(id);
-  //   const newListData = [...notes];
-  //   newListData[index].archived = true;
-  //   // updateData(newListData);
-  // };
 
   return (
     <div className="notes-list">
@@ -21,3 +15,7 @@ export default function NotesList({ notes }) {
     </div>
   );
 }
+
+NotesList.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

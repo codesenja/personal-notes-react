@@ -1,36 +1,29 @@
 import React from "react";
 import { showFormattedDate } from "../../utils";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function NotesBody(props) {
+export default function NotesBody({ id, title, createdAt, body }) {
+  console.log(id);
   return (
     <>
       <div className="note-item">
         <div className="note-item__content">
           <h2 className="note-item__title">
-            <Link to={`detail/${props.id}`}>{props.title}</Link>
+            <Link to={`detail/${id}`}>{title}</Link>
           </h2>
 
-          <p className="note-item__date">
-            {showFormattedDate(props.createdAt)}
-          </p>
-          <p className="note-item__body">{props.body}</p>
+          <p className="note-item__date">{showFormattedDate(createdAt)}</p>
+          <p className="note-item__body">{body}</p>
         </div>
-        {/* <div className="note-item__action">
-          <button
-            className="note-item__delete-button"
-            onClick={() => props.deleteNotes(props.id)}
-          >
-            Delete
-          </button>
-          <button
-            className="note-item__archive-button"
-            onClick={() => props.archiveNotes(props.id)}
-          >
-            {props.archived === false ? "Arsipkan" : "Pindahkan"}
-          </button>
-        </div> */}
       </div>
     </>
   );
 }
+
+NotesBody.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { BiArchiveIn, BiArchiveOut } from "react-icons/bi";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 export default function NotesDetail({
   notes,
@@ -17,19 +18,23 @@ export default function NotesDetail({
   });
 
   const handleArchived = () => {
+    toast("Catatanmu Berhasil di arsip");
     onArchived(notes.id);
   };
 
   const handleUnArchived = () => {
+    toast("Catatanmu Berhasil tidak di arsip");
     onUnArchived(notes.id);
   };
 
   const handleEdit = () => {
+    toast("Catatanmu Berhasil diedit");
     onUpdate(listItem);
   };
 
   const handleDelete = () => {
-    onDelete(notes.id);
+    window.confirm("Apakah mau menghapus catatan ini") && onDelete(notes.id);
+    toast("Catatanmu Berhasil dihapus");
   };
 
   return (

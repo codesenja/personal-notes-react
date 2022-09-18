@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 export default function NotesInput({ addNotes }) {
   const [listItem, setListItem] = useState({
@@ -13,7 +14,7 @@ export default function NotesInput({ addNotes }) {
   const bodyValueHandle = (e) => {
     const limit = 100;
 
-    setLimitValue(limit - e.length);
+    setLimitValue(limit - e.length + 1);
 
     setListItem({
       ...listItem,
@@ -22,6 +23,7 @@ export default function NotesInput({ addNotes }) {
   };
 
   const handleSubmit = () => {
+    toast("Catatanmu Berhasil ditambahkan");
     addNotes(listItem);
   };
 

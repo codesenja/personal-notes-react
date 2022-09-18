@@ -5,6 +5,7 @@ import SearchBar from "../components/NoteSearch/SearchBar";
 import { AiOutlinePlus } from "react-icons/ai";
 import { getAllNotes } from "../utils/local-data";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export default function LandingPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -47,6 +48,7 @@ export default function LandingPage() {
           </button>
         </div>
       </main>
+      <ToastContainer autoClose={1500} />
     </>
   );
 }

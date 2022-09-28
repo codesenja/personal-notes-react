@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import HeaderSection from "../components/HeaderSection";
+import Fouronfour from "../pages/404";
 import NotesDetail from "../components/NotesDetail/NotesDetail";
 import {
   getNote,
@@ -38,16 +39,22 @@ export default function DetailPage() {
 
   return (
     <>
-      <HeaderSection />
-      <main>
-        <NotesDetail
-          notes={result}
-          onDelete={deleteNoteHandler}
-          onUpdate={updateNoteHandler}
-          onArchived={archiveNoteHandler}
-          onUnArchived={unarchiveNoteHandler}
-        />
-      </main>
+      {result === undefined ? (
+        <Fouronfour />
+      ) : (
+        <>
+          <HeaderSection />
+          <main>
+            <NotesDetail
+              notes={result}
+              onDelete={deleteNoteHandler}
+              onUpdate={updateNoteHandler}
+              onArchived={archiveNoteHandler}
+              onUnArchived={unarchiveNoteHandler}
+            />
+          </main>
+        </>
+      )}
     </>
   );
 }

@@ -7,16 +7,10 @@ import { toast } from "react-toastify";
 export default function NotesDetail({
   notes,
   onDelete,
-  onUpdate,
+  // onUpdate,
   onArchived,
   onUnArchived,
 }) {
-  const [listItem, setListItem] = useState({
-    id: notes.id,
-    title: notes.title,
-    body: notes.body,
-  });
-
   const handleArchived = () => {
     toast("Catatanmu Berhasil di arsip");
     onArchived(notes.id);
@@ -27,10 +21,10 @@ export default function NotesDetail({
     onUnArchived(notes.id);
   };
 
-  const handleEdit = () => {
-    toast("Catatanmu Berhasil diedit");
-    onUpdate(listItem);
-  };
+  // const handleEdit = () => {
+  //   toast("Catatanmu Berhasil diedit");
+  //   onUpdate(listItem);
+  // };
 
   const handleDelete = () => {
     window.confirm("Apakah mau menghapus catatan ini") && onDelete(notes.id);
@@ -44,13 +38,13 @@ export default function NotesDetail({
           type="text"
           className="add-new-page__input__title"
           placeholder="ini adalah judul ..."
-          onChange={(e) => {
-            setListItem({
-              ...listItem,
-              title: e.target.value,
-            });
-          }}
-          value={listItem.title}
+          // onChange={(e) => {
+          //   setListItem({
+          //     ...listItem,
+          //     title: e.target.value,
+          //   });
+          // }}
+          defaultValue={notes.title}
           required
         />
         <textarea
@@ -58,13 +52,13 @@ export default function NotesDetail({
           id="body"
           className="add-new-page__input__body"
           placeholder="tulis catatanmu disini..."
-          onChange={(e) => {
-            setListItem({
-              ...listItem,
-              body: e.target.value,
-            });
-          }}
-          value={listItem.body}
+          // onChange={(e) => {
+          //   setListItem({
+          //     ...listItem,
+          //     body: e.target.value,
+          //   });
+          // }}
+          defaultValue={notes.body}
         />
         <p className="note-input__title__char-limit"></p>
         <div className="detail-page__action">
@@ -92,14 +86,14 @@ export default function NotesDetail({
             </>
           )}
 
-          <button
+          {/* <button
             className="action"
             type="button"
             title="edit"
             onClick={handleEdit}
           >
             <AiOutlineEdit />
-          </button>
+          </button> */}
           <button
             className="action"
             type="button"
@@ -117,7 +111,7 @@ export default function NotesDetail({
 NotesDetail.propTypes = {
   notes: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  // onUpdate: PropTypes.func.isRequired,
   onArchived: PropTypes.func.isRequired,
   onUnArchived: PropTypes.func.isRequired,
 };

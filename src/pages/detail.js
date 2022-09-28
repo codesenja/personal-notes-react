@@ -1,59 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import HeaderSection from "../components/HeaderSection";
 import Fouronfour from "../pages/404";
 import NotesDetail from "../components/NotesDetail/NotesDetail";
+// import {
+//   getNote,
+//   deleteNote,
+//   editNote,
+//   archiveNote,
+//   unarchiveNote,
+// } from "../utils/local-data";
 import {
-  getNote,
   deleteNote,
-  editNote,
-  archiveNote,
   unarchiveNote,
-} from "../utils/local-data";
+  archiveNote,
+  getNote,
+} from "../utils/network-data";
+
 import { useNavigate } from "react-router-dom";
 
 export default function DetailPage() {
-  let { id } = useParams();
   const navigate = useNavigate();
-  const result = getNote(id);
+  const init_value = {
+    id: "",
+    title: "",
+    body: "",
+    createdAt: "",
+    archived: false,
+    owner: "",
+  };
+  const { id } = useParams();
+  const updateData = () => {
+    getNoteById(id);
+  };
+  const [result, setResult] = useState(init_value);
 
-  const archiveNoteHandler = (data) => {
-    archiveNote(data);
+  const getNoteById = async (idData) => {
+    const { data } = await getNote(idData);
+    setResult(data);
+  };
+
+  const archiveNoteHandler = async (data) => {
+    await archiveNote(data);
     navigate("/");
   };
 
-  const unarchiveNoteHandler = (data) => {
-    unarchiveNote(data);
+  const unarchiveNoteHandler = async (data) => {
+    await unarchiveNote(data);
     navigate("/");
   };
 
-  const deleteNoteHandler = (data) => {
-    deleteNote(data);
+  const deleteNoteHandler = async (data) => {
+    await deleteNote(data);
+
     navigate("/");
   };
 
-  const updateNoteHandler = (data) => {
-    editNote(data);
-    navigate("/");
-  };
+  // const updateNoteHandler = async (data) => {
+  //   editNote(data);
+  //   navigate("/");
+  // };
+
+  useEffect(() => {
+    updateData();
+    return () => {
+      setResult(null);
+    };
+  }, [id]);
+
+  if (result === null) {
+    return (
+      <section>
+        <h2 className="section-title">Data Tidak Ditemukan</h2>
+      </section>
+    );
+  }
 
   return (
     <>
       {result === undefined ? (
         <Fouronfour />
       ) : (
-        <>
-          <HeaderSection />
-          <main>
-            <NotesDetail
-              notes={result}
-              onDelete={deleteNoteHandler}
-              onUpdate={updateNoteHandler}
-              onArchived={archiveNoteHandler}
-              onUnArchived={unarchiveNoteHandler}
-            />
-          </main>
-        </>
+        <NotesDetail
+          notes={result}
+          onDelete={deleteNoteHandler}
+          // onUpdate={updateNoteHandler}
+          onArchived={archiveNoteHandler}
+          onUnArchived={unarchiveNoteHandler}
+        />
       )}
     </>
   );

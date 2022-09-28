@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineLogout } from "react-icons/ai";
+import PropTypes from "prop-types";
 
-export default function HeaderSection() {
+export default function HeaderSection({ logout, name }) {
   return (
     <header>
       <h1>
@@ -14,6 +16,15 @@ export default function HeaderSection() {
           </li>
         </ul>
       </nav>
+      <button type="button" className="button-logout" onClick={logout}>
+        <AiOutlineLogout />
+        {name}
+      </button>
     </header>
   );
 }
+
+HeaderSection.propTypes = {
+  logout: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+};

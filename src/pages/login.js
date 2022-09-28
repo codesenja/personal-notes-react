@@ -1,5 +1,4 @@
 import React from "react";
-import HeaderSection from "../components/HeaderSection";
 import LoginInput from "../components/LoginPage/LoginInput";
 import { login } from "../utils/network-data";
 
@@ -13,10 +12,7 @@ export default function LoginPage({ loginSuccess }) {
 
   return (
     <>
-      <HeaderSection />
-      <main>
-        <LoginInput login={onLoginHandler} />
-      </main>
+      <LoginInput login={onLoginHandler} />
     </>
   );
 }

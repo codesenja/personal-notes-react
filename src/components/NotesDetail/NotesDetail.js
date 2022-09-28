@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import React from "react";
+import { AiOutlineDelete } from "react-icons/ai";
 import { BiArchiveIn, BiArchiveOut } from "react-icons/bi";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";

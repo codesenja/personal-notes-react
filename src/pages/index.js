@@ -21,9 +21,13 @@ export default function LandingPage() {
 
   // const notes = getAllNotes();
   const [notes, setNotes] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
+
   const getDataNotes = async () => {
+    setIsLoading(true);
     const { data } = await getActiveNotes();
     setNotes(data);
+    setIsLoading(false);
   };
 
   const [filterNotes, setFilterNotes] = useState(keyword || "");
@@ -45,7 +49,7 @@ export default function LandingPage() {
         keyword={filterNotes}
         keywordChange={changeSearchParams}
       />
-      <NotesApp data={resultNotes} />
+      <NotesApp data={resultNotes} loading={isloading} />
 
       <div className="homepage__action">
         <button

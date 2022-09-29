@@ -6,6 +6,7 @@ import NoteApp from "./App";
 // import style
 import "./styles/style.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(

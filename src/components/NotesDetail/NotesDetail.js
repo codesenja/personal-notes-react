@@ -3,9 +3,11 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BiArchiveIn, BiArchiveOut } from "react-icons/bi";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import Skeleton from "react-loading-skeleton";
 
 export default function NotesDetail({
   notes,
+  loading,
   onDelete,
   // onUpdate,
   onArchived,
@@ -34,7 +36,16 @@ export default function NotesDetail({
   return (
     <section className="detail-page">
       <div className="add-new-page__input">
-        <input
+        <h3 className="detail-page__title">
+          {loading === true ? <Skeleton /> : notes.title}
+        </h3>
+        <p className="detail-page__createdAt">
+          {loading === true ? <Skeleton /> : notes.createdAt}
+        </p>
+        <div className="detail-page__body">
+          {loading === true ? <Skeleton /> : notes.body}
+        </div>
+        {/* <input
           type="text"
           className="add-new-page__input__title"
           placeholder="ini adalah judul ..."
@@ -46,8 +57,9 @@ export default function NotesDetail({
           // }}
           defaultValue={notes.title}
           required
-        />
-        <textarea
+        /> */}
+
+        {/* <textarea
           name="body"
           id="body"
           className="add-new-page__input__body"
@@ -59,7 +71,7 @@ export default function NotesDetail({
           //   });
           // }}
           defaultValue={notes.body}
-        />
+        /> */}
         <p className="note-input__title__char-limit"></p>
         <div className="detail-page__action">
           {notes.archived === true ? (
@@ -114,4 +126,5 @@ NotesDetail.propTypes = {
   // onUpdate: PropTypes.func.isRequired,
   onArchived: PropTypes.func.isRequired,
   onUnArchived: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
 };

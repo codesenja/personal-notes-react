@@ -11,9 +11,13 @@ export default function ArchivedPage() {
 
   // const result = getArchivedNotes();
   const [archived, setArchived] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
+
   const getDataArchived = async () => {
+    setIsLoading(true);
     const { data } = await getArchivedNotes();
     setArchived(data);
+    setIsLoading(false);
   };
   const [filterNotes, setFilterNotes] = useState(keyword || "");
 
@@ -37,7 +41,7 @@ export default function ArchivedPage() {
         keyword={filterNotes}
         keywordChange={changeSearchParams}
       />
-      <ArchiveSection archived={resultNotes} />
+      <ArchiveSection archived={resultNotes} loading={isloading} />
     </>
   );
 }

@@ -34,10 +34,13 @@ export default function DetailPage() {
     getNoteById(id);
   };
   const [result, setResult] = useState(init_value);
+  const [isloading, setIsLoading] = useState(false);
 
   const getNoteById = async (idData) => {
+    setIsLoading(true);
     const { data } = await getNote(idData);
     setResult(data);
+    setIsLoading(false);
   };
 
   const archiveNoteHandler = async (data) => {
@@ -80,6 +83,7 @@ export default function DetailPage() {
       ) : (
         <NotesDetail
           notes={result}
+          loading={isloading}
           onDelete={deleteNoteHandler}
           // onUpdate={updateNoteHandler}
           onArchived={archiveNoteHandler}

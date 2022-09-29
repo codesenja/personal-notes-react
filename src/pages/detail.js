@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Fouronfour from "../pages/404";
@@ -62,15 +63,12 @@ export default function DetailPage() {
 
   useEffect(() => {
     updateData();
-    return () => {
-      setResult(null);
-    };
   }, [id]);
 
   if (result === null) {
     return (
       <section>
-        <h2 className="section-title">Data Tidak Ditemukan</h2>
+        <h2>Data Tidak Ditemukan</h2>
       </section>
     );
   }

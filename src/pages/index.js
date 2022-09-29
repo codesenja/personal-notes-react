@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NotesApp from "../components/NotesSection/NotesApp";
 import SearchBar from "../components/NoteSearch/SearchBar";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -6,8 +6,11 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { getActiveNotes } from "../utils/network-data";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import LocaleContext from "../contexts/LocaleContext";
 
 export default function LandingPage() {
+  const { locale } = useContext(LocaleContext);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const keyword = searchParams.get("keyword");
 
@@ -38,7 +41,7 @@ export default function LandingPage() {
   return (
     <>
       <SearchBar
-        title="Aktif"
+        title={locale === "en" ? "Active" : "Aktif"}
         keyword={filterNotes}
         keywordChange={changeSearchParams}
       />
@@ -48,7 +51,7 @@ export default function LandingPage() {
         <button
           className="action"
           type="button"
-          title="tambah"
+          title={locale === "en" ? "Add" : "tambah"}
           onClick={() => navigate("/add")}
         >
           <AiOutlinePlus />

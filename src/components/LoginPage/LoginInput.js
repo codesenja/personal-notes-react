@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import useInput from "../../hooks/useInput";
 import PropTypes from "prop-types";
+import LocaleContext from "../../contexts/LocaleContext";
 
 export default function LoginInput({ login }) {
+  const { locale } = useContext(LocaleContext);
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
 
@@ -26,7 +28,11 @@ export default function LoginInput({ login }) {
   return (
     <>
       <section className="login-page">
-        <h2>Login to use app, please.</h2>
+        <h2>
+          {locale === "en"
+            ? "Login to use app, please."
+            : "Yuk, login untuk menggunakan aplikasi."}
+        </h2>
       </section>
       <div className="input-login">
         <label htmlFor="email">Email</label>
@@ -40,11 +46,13 @@ export default function LoginInput({ login }) {
         />
 
         <button className="action" type="button" onClick={onSubmitHandler}>
-          Login
+          {locale === "en" ? "Login" : "Gabung"}
         </button>
       </div>
-      <p>Don't have an account? </p>
-      <Link to="/register">Register here</Link>
+      <p>{locale === "en" ? "Don't have an account?" : "Belum punya akun?"}</p>
+      <Link to="/register">
+        {locale === "en" ? "Register here" : "Daftar disini"}
+      </Link>
     </>
   );
 }

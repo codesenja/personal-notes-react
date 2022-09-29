@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import useInput from "../../hooks/useInput";
 import PropTypes from "prop-types";
+import LocaleContext from "../../contexts/LocaleContext";
 
 export default function MainRegister({ register }) {
   const [name, onNameChange] = useInput("");
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
   const [confirmPassword, onConfirmPasswordChange] = useInput("");
+  const { locale } = useContext(LocaleContext);
 
   const isValidEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
@@ -32,7 +34,11 @@ export default function MainRegister({ register }) {
   return (
     <>
       <section className="register-page">
-        <h2>Fill the form to register account.</h2>
+        <h2>
+          {locale === "en"
+            ? "Fill the form to register account."
+            : "Isi form untuk mendaftar akun."}
+        </h2>
       </section>
       <div className="input-register">
         <label htmlFor="name">Name</label>
@@ -54,11 +60,13 @@ export default function MainRegister({ register }) {
           onChange={onConfirmPasswordChange}
         />
         <button className="action" type="button" onClick={onSubmitHandler}>
-          Register
+          {locale === "en" ? "Register" : "Daftar"}
         </button>
       </div>
-      <p>Already have an account?</p>
-      <Link to="/">Login Here</Link>
+      <p>
+        {locale === "en" ? "Already have an account?" : "Sudah punya akun?"}
+      </p>
+      <Link to="/">{locale === "en" ? "Login Here" : "Login disini"} </Link>
     </>
   );
 }

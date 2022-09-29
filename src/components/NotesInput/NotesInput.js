@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import LocaleContext from "../../contexts/LocaleContext";
 
 export default function NotesInput({ addNotes }) {
+  const { locale } = useContext(LocaleContext);
+
   const [listItem, setListItem] = useState({
     title: "",
     body: "",
@@ -33,7 +36,9 @@ export default function NotesInput({ addNotes }) {
         <input
           type="text"
           className="add-new-page__input__title"
-          placeholder="ini adalah judul ..."
+          placeholder={
+            locale === "en" ? "This is title..." : "ini adalah judul ..."
+          }
           onChange={(e) => {
             setListItem({
               ...listItem,
@@ -47,7 +52,11 @@ export default function NotesInput({ addNotes }) {
           name="body"
           id="body"
           className="add-new-page__input__body"
-          placeholder="tulis catatanmu disini..."
+          placeholder={
+            locale === "en"
+              ? "write your note here..."
+              : "tulis catatanmu disini..."
+          }
           onChange={(e) => {
             bodyValueHandle(e.target.value);
           }}
@@ -60,7 +69,7 @@ export default function NotesInput({ addNotes }) {
           <button
             className="action"
             type="button"
-            title="tambah"
+            title={locale === "en" ? "Add" : "tambah"}
             onClick={handleSubmit}
           >
             <AiOutlineCheck />

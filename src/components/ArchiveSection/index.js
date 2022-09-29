@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import NotesBody from "../NotesSection/NotesBody";
 import PropTypes from "prop-types";
+import LocaleContext from "../../contexts/LocaleContext";
 
 export default function ArchiveSection({ archived }) {
+  const { locale } = useContext(LocaleContext);
+
   // const result = data.filter((row) => row.archived === true);
 
   // const onDeleteHandler = (id) => {
@@ -19,10 +22,12 @@ export default function ArchiveSection({ archived }) {
 
   return (
     <>
-      <h2>Arsip</h2>
+      <h2>{locale === "en" ? "Archive" : "Arsip"}</h2>
       <div className="notes-list">
         {archived.length === 0 || undefined ? (
-          <h3>Tidak ada catatan</h3>
+          <h3>
+            {locale === "en" ? "Notes has been empty" : "Tidak ada catatan"}
+          </h3>
         ) : (
           archived.map((note) => (
             <NotesBody key={note.id} id={note.id} {...note} />
